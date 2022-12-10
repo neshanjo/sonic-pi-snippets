@@ -26,6 +26,7 @@ Some code snippets that help me making music with [sonic pi](https://sonic-pi.ne
 - [Global variables](#global-variables)
 - [Favorite effects](#favorite-effects)
   - [Ping pong echo](#ping-pong-echo)
+  - [Adding moving lpf to any sound](#adding-moving-lpf-to-any-sound)
 - [Favorite samples](#favorite-samples)
 - [Favorite synth sounds](#favorite-synth-sounds)
   - [Bass or lead: soft and fat](#bass-or-lead-soft-and-fat)
@@ -34,7 +35,9 @@ Some code snippets that help me making music with [sonic pi](https://sonic-pi.ne
   - [Piano: FM electric piano](#piano-fm-electric-piano)
   - [Pad: soft and dark](#pad-soft-and-dark)
 - [Risers and fallers](#risers-and-fallers)
+  - [Riser: Snare roll](#riser-snare-roll)
   - [Faller: lunar land](#faller-lunar-land)
+- [License](#license)
 
 ## Template with synced live loops
 
@@ -175,6 +178,16 @@ play :a4 if (spread 3, 8, rotate: 1).tick
 
 [Euclidean rhythms](https://en.wikipedia.org/wiki/Euclidean_rhythm) define patterns that are typical in different rhythms, e.g. `(spread 3, 8) = (ring true, false, false, true, false, false, true, false)` is a typical clave pattern.
 
+Other example that can be copied to be used for different notes (e.g. bass notes):
+
+```ruby
+volume = 1.5
+16.times do
+  play :c2, amp: volume if (spread 5, 8, rotate: 2).tick
+  sleep 0.25
+end
+```
+
 ## Effect automation
 
 ### Independent ticks in one live_loop
@@ -257,6 +270,16 @@ end
 with_fx :ping_pong, mix: 1, phase: 4, feedback: 0.8
 ```
 
+### Adding moving lpf to any sound
+
+... even if the sound does not have a `cutoff`-property!
+
+```ruby
+with_fx :lpf, cutoff: (line 70, 100, steps: 64).reflect.tick do
+  # code
+end
+```
+
 ## Favorite samples
 
 - `:bd_haus`: fat house bassdrum
@@ -323,6 +346,18 @@ end
 
 ## Risers and fallers
 
+### Riser: Snare roll
+
+```ruby
+live_loop :snareriser do
+  sample :drum_snare_hard,
+    amp: (line 0, 1.0, inclusive: true, steps: 64).ramp.tick
+  sleep 0.25
+end
+```
+
+Explanation: `line` creates a ring going from 0 to 1.0 in 64 steps. `ramp` make the last value of the ring repeat forever.
+
 ### Faller: lunar land
 
 ```ruby
@@ -334,4 +369,8 @@ live_loop :fill do
 end
 ```
 
-(C) by Johannes Schneider
+## License 
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License.](https://creativecommons.org/licenses/by/4.0/). The code can be used within the conditions of the [MIT license](LICENSE).
+
+(C) Johannes Schneider
