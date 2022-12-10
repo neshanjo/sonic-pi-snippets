@@ -36,7 +36,7 @@ Some code snippets that help me making music with [sonic pi](https://sonic-pi.ne
   - [Pad: soft and dark](#pad-soft-and-dark)
 - [Risers and fallers](#risers-and-fallers)
   - [Riser: Snare roll](#riser-snare-roll)
-  - [Faller: lunar land](#faller-lunar-land)
+  - [Faller: Lunar land](#faller-lunar-land)
 - [License](#license)
 
 ## Template with synced live loops
@@ -358,7 +358,7 @@ end
 
 Explanation: `line` creates a ring going from 0 to 1.0 in 64 steps. `ramp` make the last value of the ring repeat forever.
 
-### Faller: lunar land
+### Faller: Lunar land
 
 ```ruby
 live_loop :fill do
@@ -371,6 +371,6 @@ end
 
 ## License 
 
-This work is licensed under a [Creative Commons Attribution 4.0 International License.](https://creativecommons.org/licenses/by/4.0/). The code can be used within the conditions of the [MIT license](LICENSE).
+This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). The code can be used within the conditions of the [MIT license](LICENSE).
 
 (C) Johannes Schneider
