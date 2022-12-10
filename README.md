@@ -14,6 +14,7 @@ Some code snippets that help me making music with [sonic pi](https://sonic-pi.ne
   - [Changing the octave](#changing-the-octave)
 - [Sequencing techniques](#sequencing-techniques)
   - [Playing a looping sequence](#playing-a-looping-sequence)
+  - [Arpeggiate over a pentatonic scale](#arpeggiate-over-a-pentatonic-scale)
   - [Playing a sample (or a note) every 8th time](#playing-a-sample-or-a-note-every-8th-time)
   - [Playing a sample (or a note) with 0.5% probability](#playing-a-sample-or-a-note-with-05-probability)
   - [Playing random notes from a scale](#playing-random-notes-from-a-scale)
@@ -30,6 +31,7 @@ Some code snippets that help me making music with [sonic pi](https://sonic-pi.ne
 - [Favorite samples](#favorite-samples)
 - [Favorite synth sounds](#favorite-synth-sounds)
   - [Bass or lead: soft and fat](#bass-or-lead-soft-and-fat)
+  - [Chiptune lead](#chiptune-lead)
   - [Fat FM Bass (in octave 2)](#fat-fm-bass-in-octave-2)
   - [Gnarly FM Bass (in octave 3)](#gnarly-fm-bass-in-octave-3)
   - [Piano: FM electric piano](#piano-fm-electric-piano)
@@ -145,6 +147,15 @@ play :e1 # actually, :e2 is played!
 play (ring :e2, :b5, :d5, :b3, :a4).tick
 sleep 1
 ```
+
+### Arpeggiate over a pentatonic scale
+
+```ruby
+play (scale :c4, :minor_pentatonic, num_octaves: 2).tick
+# tick
+```
+
+Sounds great when the second tick is uncommented - so only every second note is played.
 
 ### Playing a sample (or a note) every 8th time
 
@@ -283,6 +294,7 @@ end
 ## Favorite samples
 
 - `:bd_haus`: fat house bassdrum
+- `sample :sn_dolf`: punchy snare drum
 - `sample :drum_cymbal_open, finish: 0.2, amp: 0.4`: tamed open hihat
 
 ## Favorite synth sounds
@@ -292,6 +304,15 @@ end
 ```ruby
 use_synth :dtri
 ```
+
+### Chiptune lead
+
+```ruby
+use_synth :chiplead
+use_synth_defaults width: 2
+```
+
+Try the 0, 1 and 2 for width which make completely different sounds. Sounds great using together with a lpf (which must be added separately with `with_fx :lpf, cutoff: ...`).
 
 ### Fat FM Bass (in octave 2)
 
